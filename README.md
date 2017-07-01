@@ -1,2 +1,2 @@
-# bluemountian
+# bluemountain
 My personal website
