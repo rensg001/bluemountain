@@ -1,0 +1,10 @@
+<h1>我的日志</h1>
+
+<p>作者：{{ username }}</p>
+<a href="#" data-url="/web-log" id="log">写日志</a>
+
+<script>
+    $("#log").click(function () {
+        $("#page-content-wrapper").load($(this).attr("data-url"));
+    });
+</script>

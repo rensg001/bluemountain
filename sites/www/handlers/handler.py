@@ -8,3 +8,4 @@ from tornado.web import RequestHandler
 class BaseHandler(RequestHandler):
     """handler"""
 
+    pass
