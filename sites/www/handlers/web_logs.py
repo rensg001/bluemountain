@@ -5,6 +5,8 @@
 #
 """日志模块"""
 from sites.www.handlers.handler import BaseHandler
+from sites.www.handlers.handler import ResponseResult
+from sites.services.logs import logs
 
 
 class WebLogsHandler(BaseHandler):
@@ -13,7 +15,7 @@ class WebLogsHandler(BaseHandler):
     def get(self):
         return self.render(
             "web-logs/web-logs.html",
-            username="<script>alert('任山贵')</script>"
+            username="任山贵"
         )
 
 
@@ -22,3 +24,8 @@ class WebLogHandler(BaseHandler):
 
     def get(self):
         return self.render("web-logs/web-log.html")
+
+    def post(self):
+        content = self.get_argument("content")
+        logs.create(content)
+        return ResponseResult()

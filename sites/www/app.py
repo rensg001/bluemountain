@@ -17,12 +17,15 @@ from tornado.log import enable_pretty_logging
 from tornado.options import options
 from tornado.options import define
 
-from sites.www.routes import handlers
 
 # 定义模块命令行选项
 define("template-dir", default="templates", help="模版根目录")
 define("debug", default=True, help="是否开发模式")
 define("static-dir", default="static", help="静态文件根目录")
+define(
+    "mysql",
+    help="数据配置",
+)
 
 
 def main():
@@ -47,6 +50,8 @@ def main():
     settings = dict(template_loader=jinja2_loader,
                     debug=options.debug,
                     static_path=options.static_dir)
+
+    from sites.www.routes import handlers
     app = Application(handlers=handlers, **settings)
     server = HTTPServer(app)
     server.listen(8888)
