@@ -28,4 +28,6 @@ class WebLogHandler(BaseHandler):
     def post(self):
         content = self.get_argument("content")
         logs.create(content)
-        return ResponseResult()
+        self.write(ResponseResult())
+        self.finish()
+        return

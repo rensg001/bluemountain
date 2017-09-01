@@ -20,6 +20,6 @@ def create(log: Log) -> int:
     with Session() as session:
         session.add(log)
         session.commit()
+        log_id = log.id
 
-    log_id = log.id
     return log_id

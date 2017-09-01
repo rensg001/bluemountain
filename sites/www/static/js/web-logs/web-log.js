@@ -16,9 +16,14 @@ $(function () {
             content: '确认保存吗？',
             buttons: {
                 '确认': function () {
-                    // 读取 html
-                    alert(editor.txt.html());
-
+                    // 读取html并请求保存日志接口
+                    $.post('/web-log', {"content": editor.txt.html()}, 'json')
+                        .done(function () {
+                            alert("保存成功！");
+                        })
+                        .fail(function (xhr, status, error) {
+                        alert("保存失败" + JSON.parse(xhr.responseText).data);
+                    })
                 },
                 '取消': function () {
                 }
