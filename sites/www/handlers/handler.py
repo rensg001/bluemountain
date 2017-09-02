@@ -3,7 +3,6 @@
 #
 # Author rsg
 #
-import collections
 
 from tornado.web import RequestHandler
 
@@ -20,10 +19,19 @@ class BaseHandler(RequestHandler):
                 exc_value,
                 UserExceptionBase,
         ):
-            self.write(ResponseResult(data=exc_value, code=400))
+            self.write(ResponseResult(data=exc_value.msg, code=exc_value.code))
             self.finish()
         else:
             super(BaseHandler, self).write_error(status_code, **kwargs)
+
+    def get_argument(self, name, _type=str,
+                     default=RequestHandler._ARG_DEFAULT, strip=True):
+        argument = super(BaseHandler, self).get_argument(name, default, strip)
+
+        if _type == int:
+            argument = int(argument)
+
+        return argument
 
 
 class ResponseResult(dict):

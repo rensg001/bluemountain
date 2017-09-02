@@ -19,3 +19,17 @@ class UserExceptionBase(Exception):
     @property
     def code(self):
         return self._code
+
+
+class Pagination(object):
+    def __init__(self, page, page_size):
+        self._page = page
+        self._page_size = page_size
+
+    @property
+    def page_size(self):
+        return self._page_size
+
+    @property
+    def start(self):
+        return self._page_size * (self._page - 1)

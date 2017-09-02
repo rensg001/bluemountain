@@ -13,9 +13,17 @@ class WebLogsHandler(BaseHandler):
     """日志列表"""
 
     def get(self):
+        page = self.get_argument("page", _type=int, default=1)
+        page_size = self.get_argument("page_size", _type=int, default=10)
+
+        logs_info, logs_count = logs.get_with_paging(page, page_size)
         return self.render(
             "web-logs/web-logs.html",
-            username="任山贵"
+            username="任山贵",
+            logs_info=logs_info,
+            logs_count=logs_count,
+            page=page,
+            page_size=page_size,
         )
 
 
@@ -23,6 +31,7 @@ class WebLogHandler(BaseHandler):
     """日志"""
 
     def get(self):
+
         return self.render("web-logs/web-log.html")
 
     def post(self):

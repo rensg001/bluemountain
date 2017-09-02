@@ -23,7 +23,7 @@ $(function () {
                         })
                         .fail(function (xhr, status, error) {
                         alert("保存失败" + JSON.parse(xhr.responseText).data);
-                    })
+                    });
                 },
                 '取消': function () {
                 }

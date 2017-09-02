@@ -1,10 +1,31 @@
+{% import "macros/pagination.html" as paging with context %}
+
 <h1>我的日志</h1>
+{% for log in logs_info %}
+    <ul>
+        <li><span>{{ log.create_date }}</span></li>
+    </ul>
+{% endfor %}
+
+
+{{ paging.pagination(page, page_size, logs_count) }}
 
 <p>作者：{{ username }}</p>
-<a href="#" data-url="/web-log" id="log">写日志</a>
+<a href="javascript:void(0);" data-url="/web-log" id="log">写日志</a>
 
 <script>
     $("#log").click(function () {
+        $("#page-content-wrapper").load($(this).attr("data-url"));
+    });
+
+    <!-- 分页 -->
+    $("#pre-page").click(function (e) {
+        $("#page-content-wrapper").load($(this).attr("data-url"));
+    });
+    $("#next-page").click(function (e) {
+        $("#page-content-wrapper").load($(this).attr("data-url"));
+    });
+    $(".page-number").click(function (e) {
         $("#page-content-wrapper").load($(this).attr("data-url"));
     });
 </script>
