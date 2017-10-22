@@ -1,0 +1,26 @@
+<link rel="stylesheet"
+      href="{{ static_url('css/bootstrap-table/bootstrap-table.min.css') }}">
+
+<table
+        id="table1"
+        data-toggle="table"
+        data-side-pagination="client"
+        data-pagination="true"
+        data-show-refresh="true"
+        data-showColumns="true"
+        class="table table-hover">
+    <thead>
+        <tr>
+            <th data-field="name">名称</th>
+            <th data-field="size">文件大小</th>
+            <th data-field="create_time">上传时间</th>
+            <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">操作</th>
+        </tr>
+    </thead>
+</table>
+
+<script src="{{ static_url('js/bootstrap-table/bootstrap-table.min.js') }}"></script>
+<!-- put your locale files after bootstrap-table.js -->
+<script src="{{ static_url('js/bootstrap-table/bootstrap-table-zh-CN.js') }}"></script>
+
+<script src="{{ static_url('js/file-upload/files.js') }}"></script>

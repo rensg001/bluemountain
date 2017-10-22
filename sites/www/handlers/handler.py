@@ -7,6 +7,7 @@
 from tornado.web import RequestHandler
 
 from sites.services.base import UserExceptionBase
+from sites.services.users import users
 
 
 class BaseHandler(RequestHandler):
@@ -32,6 +33,13 @@ class BaseHandler(RequestHandler):
             argument = int(argument)
 
         return argument
+
+    def get_current_user(self):
+        user_id = self.get_secure_cookie("blueus")
+        if user_id:
+            user_info = users.get_one(int(user_id))
+            return user_info
+        return None
 
 
 class ResponseResult(dict):

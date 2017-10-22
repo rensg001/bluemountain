@@ -6,9 +6,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from tornado.options import options
 
-engine = create_engine(options.mysql, echo=True)
+from sites.www import settings
+
+engine = create_engine(settings.mysql, echo=True)
 
 OriginSession = sessionmaker(bind=engine)
 
